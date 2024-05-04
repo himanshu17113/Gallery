@@ -63,38 +63,42 @@ class _PixabayPageState extends State<PixabayPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: PreferredSize(
-            preferredSize: Size.fromHeight(56),
+            preferredSize: const Size.fromHeight(60),
             child: Padding(
               padding: const EdgeInsets.fromLTRB(50, 10, 50, 4),
-              child: TextField(
-                textAlignVertical: TextAlignVertical.center,
-                //textAlign: TextAlign.center,
-                onChanged: (value) => textfeild = value,
-                decoration: InputDecoration(
-                    fillColor: const Color(0xFFF7F7F7),
-                    filled: true,
-                    hintText: "Search",
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide.none),
-                    disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide.none),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide.none),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide.none),
-                    suffix: TextButton(
-                        onPressed: () => search(textfeild),
-                        child: Text("Find",
-                            style: TextStyle(
-                              color: Color(0xFF656F79),
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            )))),
-                onSubmitted: (text) => search(text),
+              child: Center(
+                child: TextField(
+                  textAlignVertical: TextAlignVertical.bottom,
+                  cursorHeight: 20,
+                  cursorColor: Color(0xFF656F79),
+                  cursorRadius: Radius.circular(2),
+                  onChanged: (value) => textfeild = value,
+                  decoration: InputDecoration(
+                      fillColor: const Color.fromARGB(255, 237, 237, 237),
+                      filled: true,
+                      hintText: "Search",
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(33),
+                          borderSide: BorderSide.none),
+                      disabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(33),
+                          borderSide: BorderSide.none),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(33),
+                          borderSide: BorderSide.none),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(33),
+                          borderSide: BorderSide.none),
+                      suffix: TextButton(
+                          onPressed: () => search(textfeild),
+                          child: const Text("Find",
+                              style: TextStyle(
+                                color: Color(0xFF656F79),
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              )))),
+                  onSubmitted: (text) => search(text),
+                ),
               ),
             )),
         body: LayoutBuilder(
