@@ -70,8 +70,8 @@ class _PixabayPageState extends State<PixabayPage> {
                 child: TextField(
                   textAlignVertical: TextAlignVertical.bottom,
                   cursorHeight: 20,
-                  cursorColor: Color(0xFF656F79),
-                  cursorRadius: Radius.circular(2),
+                  cursorColor: const Color(0xFF656F79),
+                  cursorRadius: const Radius.circular(2),
                   
                   onChanged: (value) => search(value) ,
                   decoration: InputDecoration(
