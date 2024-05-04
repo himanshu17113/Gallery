@@ -72,7 +72,8 @@ class _PixabayPageState extends State<PixabayPage> {
                   cursorHeight: 20,
                   cursorColor: Color(0xFF656F79),
                   cursorRadius: Radius.circular(2),
-                  onChanged: (value) => textfeild = value,
+                  
+                  onChanged: (value) => search(value) ,
                   decoration: InputDecoration(
                       fillColor: const Color.fromARGB(255, 237, 237, 237),
                       filled: true,
