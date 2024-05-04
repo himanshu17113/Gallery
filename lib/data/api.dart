@@ -6,6 +6,6 @@ class Api {
   ///
   static Future<http.Response> pixabayApi(String query, int page) async => http.get(
       Uri.parse(
-          "https://pixabay.com/api/?key=${key}&q=$query&image_type=photo&pretty=true&page=$page"),
+          "https://pixabay.com/api/?key=$key&q=$query&image_type=photo&pretty=true&page=$page"),
       headers: {'Content-Type': 'text/plain'});
 }
