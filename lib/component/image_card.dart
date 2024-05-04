@@ -52,9 +52,10 @@ class ImageCard extends StatelessWidget {
                   //     CircularProgressIndicator(),
                 ),
               )),
-          Align(
-              alignment: Alignment.bottomRight,
-              child: LikesVeiws(
+          Positioned(
+            bottom: 5,
+            right: 5,
+               child: LikesVeiws(
                 likes: pixabayImage.likes,
                 veiws: pixabayImage.views,
               )),
@@ -77,22 +78,36 @@ class ImageCard extends StatelessWidget {
               child: child,
             ),
           ),
-      pageBuilder: (ctx, anim1, anim2) => Padding(
-            padding: const EdgeInsets.all(20),
-            child: AspectRatio(
-              aspectRatio: pixabayImage.imageWidth / pixabayImage.imageHeight,
-              child: DecoratedBox(
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: CachedNetworkImageProvider(
-                              pixabayImage.webformatURL))),
-                  child: Image.network(
-                    pixabayImage.largeImageURL,
-                    fit: BoxFit.contain,
+      pageBuilder: (ctx, anim1, anim2) => Center(
+            child: Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: AspectRatio(
+                    aspectRatio:
+                        pixabayImage.imageWidth / pixabayImage.imageHeight,
+                    child: DecoratedBox(
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: CachedNetworkImageProvider(
+                                    pixabayImage.webformatURL))),
+                        child: Image.network(
+                          pixabayImage.largeImageURL,
+                          fit: BoxFit.contain,
 
-                    // placeholder: (context, url) =>
-                    //     CircularProgressIndicator(),
-                  )),
+                          // placeholder: (context, url) =>
+                          //     CircularProgressIndicator(),
+                        )),
+                  ),
+                ),
+                const Positioned(
+                  top: 20,
+                  left: 20,
+                  child: BackButton(
+                    color: Colors.white,
+                  ),
+                ),
+              ],
             ),
           ));
 }

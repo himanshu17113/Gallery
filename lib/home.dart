@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:gallery/appbar.dart';
 import 'package:gallery/component/image_card.dart';
 import 'package:gallery/domain/repository/pixabay_repository.dart';
 import 'package:gallery/model/image.dart';
@@ -16,6 +18,9 @@ class _PixabayPageState extends State<PixabayPage> {
   String q = '';
   bool isLoading = false;
   int page = 1;
+  final ValueNotifier<bool> isVisible = ValueNotifier(true);
+  final GlobalKey<ScaffoldState> key = GlobalKey<ScaffoldState>();
+
   @override
   void initState() {
     super.initState();
@@ -33,7 +38,28 @@ class _PixabayPageState extends State<PixabayPage> {
           isLoading = false;
         });
       }
+      if (scrollController.position.userScrollDirection ==
+          ScrollDirection.reverse) {
+        if (isVisible.value) {
+          isVisible.value = false;
+        }
+      }
+      if (scrollController.position.userScrollDirection ==
+          ScrollDirection.forward) {
+        if (!isVisible.value) {
+          isVisible.value = true;
+        }
+      }
     });
+  }
+
+  search(String text) async {
+    q = text;
+    page = 1;
+    scrollController.jumpTo(0);
+    pixabayImages = await PixabayRepository.getPixabay(q, 1);
+
+    setState(() {});
   }
 
   int _calculateColumnCount(final double screenWidth) {
@@ -52,22 +78,10 @@ class _PixabayPageState extends State<PixabayPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: TextFormField(
-            initialValue: '',
-            decoration: const InputDecoration(
-              fillColor: Colors.white,
-              filled: true,
-            ),
-            onFieldSubmitted: (text) async {
-              q = text;
-              page = 1;
-              scrollController.jumpTo(0);
-              pixabayImages = await PixabayRepository.getPixabay(q, 1);
-
-              setState(() {});
-            },
-          ),
+        appBar: HomeAppBar(
+          isVisible: isVisible,
+          skey: key,
+          onPressed: (text) => search(text),
         ),
         body: LayoutBuilder(
           builder: (context, constraints) {

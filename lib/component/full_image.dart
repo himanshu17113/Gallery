@@ -28,8 +28,16 @@ class FullImage extends StatelessWidget {
                 // placeholder: (context, url) =>
                 //     CircularProgressIndicator(),
               )),
-          Align(
-              alignment: Alignment.bottomRight,
+          const Positioned(
+            top: 20,
+            left: 20,
+            child: BackButton(
+              color: Colors.white,
+            ),
+          ),
+          Positioned(
+              bottom: 5,
+              right: 5,
               child: LikesVeiws(
                 likes: pixabayImage.likes,
                 veiws: pixabayImage.views,
