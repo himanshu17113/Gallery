@@ -25,7 +25,7 @@ class _PixabayPageState extends State<PixabayPage> {
 
     scrollController.addListener(() async {
       if ((scrollController.position.pixels >=
-              scrollController.position.maxScrollExtent * 0.95 &&
+              scrollController.position.maxScrollExtent * 0.8 &&
           !isLoading)) {
         isLoading = true;
         PixabayRepository.getPixabay(q, ++page)
@@ -72,8 +72,8 @@ class _PixabayPageState extends State<PixabayPage> {
                   cursorHeight: 20,
                   cursorColor: const Color(0xFF656F79),
                   cursorRadius: const Radius.circular(2),
-                  
-                  onChanged: (value) => search(value) ,
+
+                  onChanged: (value) => search(value),
                   decoration: InputDecoration(
                       fillColor: const Color.fromARGB(255, 237, 237, 237),
                       filled: true,
@@ -98,7 +98,7 @@ class _PixabayPageState extends State<PixabayPage> {
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               )))),
-             //     onSubmitted: (text) => search(text),
+                  //     onSubmitted: (text) => search(text),
                 ),
               ),
             )),
