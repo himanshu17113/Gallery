@@ -98,7 +98,7 @@ class _PixabayPageState extends State<PixabayPage> {
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               )))),
-                  onSubmitted: (text) => search(text),
+             //     onSubmitted: (text) => search(text),
                 ),
               ),
             )),
