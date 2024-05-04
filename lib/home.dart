@@ -14,7 +14,6 @@ class _PixabayPageState extends State<PixabayPage> {
   List<PixabayImage> pixabayImages = [];
   ScrollController scrollController = ScrollController();
   String q = '';
-  String textfeild = "";
   bool isLoading = false;
   int page = 1;
   @override
@@ -91,7 +90,7 @@ class _PixabayPageState extends State<PixabayPage> {
                           borderRadius: BorderRadius.circular(33),
                           borderSide: BorderSide.none),
                       suffix: TextButton(
-                          onPressed: () => search(textfeild),
+                          onPressed: () => search(q),
                           child: const Text("Find",
                               style: TextStyle(
                                 color: Color(0xFF656F79),
