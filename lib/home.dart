@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:gallery/appbar.dart';
 import 'package:gallery/component/image_card.dart';
 import 'package:gallery/domain/repository/pixabay_repository.dart';
 import 'package:gallery/model/image.dart';
@@ -16,11 +14,9 @@ class _PixabayPageState extends State<PixabayPage> {
   List<PixabayImage> pixabayImages = [];
   ScrollController scrollController = ScrollController();
   String q = '';
+  String textfeild = "";
   bool isLoading = false;
   int page = 1;
-  final ValueNotifier<bool> isVisible = ValueNotifier(true);
-  final GlobalKey<ScaffoldState> key = GlobalKey<ScaffoldState>();
-
   @override
   void initState() {
     super.initState();
@@ -38,28 +34,7 @@ class _PixabayPageState extends State<PixabayPage> {
           isLoading = false;
         });
       }
-      if (scrollController.position.userScrollDirection ==
-          ScrollDirection.reverse) {
-        if (isVisible.value) {
-          isVisible.value = false;
-        }
-      }
-      if (scrollController.position.userScrollDirection ==
-          ScrollDirection.forward) {
-        if (!isVisible.value) {
-          isVisible.value = true;
-        }
-      }
     });
-  }
-
-  search(String text) async {
-    q = text;
-    page = 1;
-    scrollController.jumpTo(0);
-    pixabayImages = await PixabayRepository.getPixabay(q, 1);
-
-    setState(() {});
   }
 
   int _calculateColumnCount(final double screenWidth) {
@@ -75,14 +50,53 @@ class _PixabayPageState extends State<PixabayPage> {
     }
   }
 
+  search(String text) async {
+    q = text;
+    page = 1;
+    scrollController.jumpTo(0);
+    pixabayImages = await PixabayRepository.getPixabay(q, 1);
+
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: HomeAppBar(
-          isVisible: isVisible,
-          skey: key,
-          onPressed: (text) => search(text),
-        ),
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(56),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(50, 10, 50, 4),
+              child: TextField(
+                textAlignVertical: TextAlignVertical.center,
+                //textAlign: TextAlign.center,
+                onChanged: (value) => textfeild = value,
+                decoration: InputDecoration(
+                    fillColor: const Color(0xFFF7F7F7),
+                    filled: true,
+                    hintText: "Search",
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none),
+                    disabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none),
+                    suffix: TextButton(
+                        onPressed: () => search(textfeild),
+                        child: Text("Find",
+                            style: TextStyle(
+                              color: Color(0xFF656F79),
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            )))),
+                onSubmitted: (text) => search(text),
+              ),
+            )),
         body: LayoutBuilder(
           builder: (context, constraints) {
             final double screenWidth = constraints.maxWidth;

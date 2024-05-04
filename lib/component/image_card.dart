@@ -36,7 +36,7 @@ class ImageCard extends StatelessWidget {
               position: DecorationPosition.background,
               decoration: BoxDecoration(
                   borderRadius:
-                      BorderRadius.circular(10.0), // Adjust radius as needed
+                      BorderRadius.circular(10.0), 
                   color: Colors.transparent,
                   image: DecorationImage(
                       fit: BoxFit.cover,
@@ -44,12 +44,12 @@ class ImageCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
                 child: CachedNetworkImage(
-                  //   colorBlendMode: BlendMode.srcOver,
+                  
                   imageUrl: pixabayImage.webformatURL,
                   fit: BoxFit.cover,
                   fadeInDuration: Duration.zero,
-                  // placeholder: (context, url) =>
-                  //     CircularProgressIndicator(),
+                  
+                  
                 ),
               )),
           Positioned(
@@ -89,14 +89,15 @@ class ImageCard extends StatelessWidget {
                     child: DecoratedBox(
                         decoration: BoxDecoration(
                             image: DecorationImage(
+                              fit: BoxFit.contain,
                                 image: CachedNetworkImageProvider(
                                     pixabayImage.webformatURL))),
                         child: Image.network(
                           pixabayImage.largeImageURL,
                           fit: BoxFit.contain,
 
-                          // placeholder: (context, url) =>
-                          //     CircularProgressIndicator(),
+                          
+                          
                         )),
                   ),
                 ),
