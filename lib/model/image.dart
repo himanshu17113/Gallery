@@ -1,8 +1,8 @@
 class PixabayImage {
   final String webformatURL;
   final String previewURL;
-  final int likes;
-  final String largeImageURL;
+  final int likes;final String largeImageURL;
+  
   final int views;
   final int imageWidth;
   final int imageHeight;
