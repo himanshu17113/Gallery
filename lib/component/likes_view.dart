@@ -12,9 +12,9 @@ class LikesVeiws extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(6),
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
         child: ColoredBox(
-            color: const Color.fromARGB(90, 245, 245, 250),
+            color: const Color.fromARGB(140, 250, 250, 255),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               child: Row(

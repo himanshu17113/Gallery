@@ -37,9 +37,9 @@ class ImageCard extends StatelessWidget {
               decoration: BoxDecoration(
                   boxShadow: const [
                     BoxShadow(
-                      color: Color.fromRGBO(190, 190, 190, 1),
-                      spreadRadius: 1,
-                      blurRadius: 5,
+                      color: Color.fromRGBO(150, 150, 150, 1),
+                      //   spreadRadius: .2,
+                      blurRadius: 4,
                     )
                   ],
                   borderRadius: BorderRadius.circular(10.0),
@@ -48,7 +48,7 @@ class ImageCard extends StatelessWidget {
                       fit: BoxFit.cover,
                       image: NetworkImage(pixabayImage.previewURL))),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(14),
                 child: CachedNetworkImage(
                   imageUrl: pixabayImage.webformatURL,
                   fit: BoxFit.cover,
