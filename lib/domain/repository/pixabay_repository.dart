@@ -4,8 +4,8 @@ import 'package:gallery/model/image.dart';
 import '../../data/api.dart';
 
 class PixabayRepository extends Api {
-
-  static Future<List<PixabayImage>> getPixabay(String text ,int page ) async {
+  static Future<List<PixabayImage>> getPixabay(String text, int page,
+      {bool fast = true}) async {
     // final queryParameters = {
     //   'key': '27903160-33fb8fe3da3e02b05a82f6cb4',
     //   'q': text,
@@ -14,7 +14,7 @@ class PixabayRepository extends Api {
     // };
     debugPrint("api hit");
 
-    final response = await Api.pixabayApi(text,page);
+    final response = await Api.pixabayApi(text, page, fast);
 
     // ignore: non_constant_identifier_names
     var JsonResponse = <String, dynamic>{};
@@ -26,7 +26,7 @@ class PixabayRepository extends Api {
     }
 
     final List hits = JsonResponse['hits'];
- 
+
     final images = hits.map(
       (e) {
         return PixabayImage.fromMap(e);

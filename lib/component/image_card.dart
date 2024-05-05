@@ -35,27 +35,30 @@ class ImageCard extends StatelessWidget {
           DecoratedBox(
               position: DecorationPosition.background,
               decoration: BoxDecoration(
-                  borderRadius:
-                      BorderRadius.circular(10.0), 
-                  color: Colors.transparent,
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color.fromRGBO(190, 190, 190, 1),
+                      spreadRadius: 1,
+                      blurRadius: 5,
+                    )
+                  ],
+                  borderRadius: BorderRadius.circular(10.0),
+                  color: const Color.fromRGBO(220, 220, 225, 1),
                   image: DecorationImage(
                       fit: BoxFit.cover,
                       image: NetworkImage(pixabayImage.previewURL))),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
                 child: CachedNetworkImage(
-                  
                   imageUrl: pixabayImage.webformatURL,
                   fit: BoxFit.cover,
                   fadeInDuration: Duration.zero,
-                  
-                  
                 ),
               )),
           Positioned(
-            bottom: 5,
-            right: 5,
-               child: LikesVeiws(
+              bottom: 5,
+              right: 5,
+              child: LikesVeiws(
                 likes: pixabayImage.likes,
                 veiws: pixabayImage.views,
               )),
@@ -83,22 +86,22 @@ class ImageCard extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(20),
-                  child: AspectRatio(
-                    aspectRatio:
-                        pixabayImage.imageWidth / pixabayImage.imageHeight,
-                    child: DecoratedBox(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.contain,
-                                image: CachedNetworkImageProvider(
-                                    pixabayImage.webformatURL))),
-                        child: Image.network(
-                          pixabayImage.largeImageURL,
-                          fit: BoxFit.contain,
-
-                          
-                          
-                        )),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(18),
+                    child: AspectRatio(
+                      aspectRatio:
+                          pixabayImage.imageWidth / pixabayImage.imageHeight,
+                      child: DecoratedBox(
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  fit: BoxFit.contain,
+                                  image: CachedNetworkImageProvider(
+                                      pixabayImage.webformatURL))),
+                          child: Image.network(
+                            pixabayImage.largeImageURL,
+                            //  fit: BoxFit.contain,
+                          )),
+                    ),
                   ),
                 ),
                 const Positioned(
