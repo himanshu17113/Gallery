@@ -62,7 +62,7 @@ class _PixabayPageState extends State<PixabayPage> {
         return 2;
       case >= 600 && < 1200:
         return 3;
-      case < 300:
+      case < 400:
         return 1;
       default:
         return 4;
