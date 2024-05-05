@@ -25,7 +25,7 @@ class PixabayRepository extends Api {
       debugPrint('Issue in api request');
     }
 
-    final List hits = JsonResponse['hits'];
+    final List hits = JsonResponse['hits'] ?? [];
 
     final images = hits.map(
       (e) {
