@@ -28,6 +28,8 @@ class _PixabayPageState extends State<PixabayPage> {
   void initState() {
     super.initState();
     PixabayRepository.getPixabay(q, page).then((value) => setState(() {
+          noMoreData = false;
+          noSearchFound = false;
           pixabayImages.addAll(value);
         }));
 
@@ -36,8 +38,11 @@ class _PixabayPageState extends State<PixabayPage> {
               scrollController.position.maxScrollExtent * 0.8 &&
           !isLoading)) {
         isLoading = true;
+
         PixabayRepository.getPixabay(q, ++page, fast: false)
             .then((value) => setState(() {
+                  noMoreData = false;
+                  noSearchFound = false;
                   if (value.isEmpty) {
                     noMoreData = true;
                   }
