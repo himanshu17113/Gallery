@@ -98,6 +98,7 @@ class ImageCard extends StatelessWidget {
                                   image: CachedNetworkImageProvider(
                                       pixabayImage.webformatURL))),
                           child: Image.network(
+                            fit: BoxFit.contain,
                             pixabayImage.largeImageURL,
                             //  fit: BoxFit.contain,
                           )),
